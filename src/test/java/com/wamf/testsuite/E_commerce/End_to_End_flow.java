@@ -12,22 +12,21 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+
 @Listeners(ExtentListener.class)
 public class End_to_End_flow {
 
     private TestContext context;
     public place_orderpage orderPage;
 
-
-
     @BeforeMethod
     public void bt() throws IOException {
         context = new TestContext();
-        orderPage=context.orderPage;
+        orderPage = context.orderPage;
     }
 
     @Test
-    public void test2(){
+    public void test2() {
         System.out.println("it is executing");
         ExtentTest test = ExtentListener.getTest(); // Retrieve the current ExtentTest instance
 
@@ -63,10 +62,9 @@ public class End_to_End_flow {
         }
     }
 
-@AfterMethod
-public void at(){
+    @AfterMethod
+    public void at() {
         context.driver.quit();
-}
-
+    }
 
 }

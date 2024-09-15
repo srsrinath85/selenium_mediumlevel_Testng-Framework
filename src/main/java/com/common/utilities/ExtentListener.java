@@ -10,6 +10,7 @@ import org.testng.ITestResult;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
 public class ExtentListener implements ITestListener {
 
     private static ExtentReports extentReports;
@@ -18,7 +19,6 @@ public class ExtentListener implements ITestListener {
     public static ExtentTest getTest() {
         return test.get();
     }
-
 
     @Override
     public void onStart(ITestContext context) {
@@ -60,9 +60,6 @@ public class ExtentListener implements ITestListener {
     public void onFinish(ITestContext context) {
         extentReports.flush(); // Write the results to the report
 
-
     }
 
-
 }
-

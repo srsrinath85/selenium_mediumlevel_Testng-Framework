@@ -47,6 +47,9 @@
                                 <value>${threadCount}</value>
                             </property>
                         </properties>
+                        <suiteXmlFiles>
+                            <suiteXmlFile>testng.xml</suiteXmlFile> <!-- Adjust if necessary -->
+                        </suiteXmlFiles>
                     </configuration>
                 </plugin>
                 <plugin>

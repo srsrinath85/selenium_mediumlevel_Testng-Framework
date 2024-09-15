@@ -15,7 +15,7 @@ public class TestContext {
     public PropertyFileLoader pfloader;
     public ConfigLoader cloader;
     public register register;
-    //public dbexecutor dbexecutor;
+    // public dbexecutor dbexecutor;
     public DriverFactory driverFactory;
     public place_orderpage orderPage;
 
@@ -24,7 +24,6 @@ public class TestContext {
         driverFactory = new DriverFactory(); // Initialize DriverFactory with ConfigLoader
         driver = DriverFactory.initialization(cloader.getProperty("browser"));
         driverFactory.openUrl(driver, cloader.getProperty("url1"));
-        orderPage=new place_orderpage(driver);
+        orderPage = new place_orderpage(driver);
     }
 }
-

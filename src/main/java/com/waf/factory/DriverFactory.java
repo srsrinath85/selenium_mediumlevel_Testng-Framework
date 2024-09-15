@@ -13,7 +13,6 @@ public class DriverFactory {
 
     public static WebDriver driver;
 
-
     public static WebDriver initialization(String browserType) throws IOException {
         if (browserType.equalsIgnoreCase("EDGE")) {
             WebDriverManager.edgedriver().setup();
@@ -26,13 +25,14 @@ public class DriverFactory {
         }
         return driver;
     }
+
     public void openUrl(WebDriver driver, String url) {
         driver.get(url);
         driver.manage().window().maximize();
     }
+
     public WebDriver getDriver() {
         return driver;
     }
-
 
 }
