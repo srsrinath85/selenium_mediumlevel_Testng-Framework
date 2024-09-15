@@ -2,8 +2,8 @@ package com.wamf.testsuite.E_commerce;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.common.utilities.ExtentListener;
+import com.common.utilities.VideoManger;
 import com.waf.context.TestContext;
-import com.waf.factory.DriverFactory;
 import com.waf.pages.e_commerce.place_orderpage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
@@ -11,17 +11,18 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.awt.*;
 import java.io.IOException;
 
 @Listeners(ExtentListener.class)
 public class End_to_End_flow {
-
     private TestContext context;
     public place_orderpage orderPage;
 
     @BeforeMethod
-    public void bt() throws IOException {
+    public void bt() throws IOException, AWTException {
         context = new TestContext();
+        VideoManger.startVideoRecording();
         orderPage = context.orderPage;
     }
 
@@ -64,7 +65,20 @@ public class End_to_End_flow {
 
     @AfterMethod
     public void at() {
-        context.driver.quit();
+        System.out.println("entering");
+        try {
+            if (context.driver != null) {
+                System.out.println("Stop recording");
+                VideoManger.stopVideoRecording("VID_" + System.currentTimeMillis());
+                System.out.println("Closing browser");
+                context.driver.quit();
+            }
+        } catch (Exception e) {
+            System.out.println("Exception occurred during teardown: " + e.getMessage());
+        }
+
+
+
     }
 
 }

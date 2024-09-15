@@ -5,16 +5,14 @@ import com.common.utilities.PropertyFileLoader;
 //import com.waf.dbhelper.dbexecutor;
 import com.waf.factory.DriverFactory;
 import com.waf.pages.e_commerce.place_orderpage;
-import com.waf.pages.register;
 import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
 public class TestContext {
     public WebDriver driver;
-    public PropertyFileLoader pfloader;
+    //public PropertyFileLoader pfloader;
     public ConfigLoader cloader;
-    public register register;
     // public dbexecutor dbexecutor;
     public DriverFactory driverFactory;
     public place_orderpage orderPage;

@@ -1,7 +1,6 @@
 package com.waf.factory;
 
-import com.common.utilities.ConfigLoader;
-import com.waf.context.TestContext;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -13,7 +12,7 @@ public class DriverFactory {
 
     public static WebDriver driver;
 
-    public static WebDriver initialization(String browserType) throws IOException {
+    public static WebDriver initialization(String browserType)  {
         if (browserType.equalsIgnoreCase("EDGE")) {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
@@ -31,8 +30,6 @@ public class DriverFactory {
         driver.manage().window().maximize();
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
+
 
 }
