@@ -29,34 +29,44 @@ public class ExtentListener implements ITestListener {
     @Override
     public void onTestStart(ITestResult result) {
         ExtentTest extentTest = extentReports.createTest(result.getMethod().getMethodName());
-        test.set(extentTest);
+        test.set(extentTest); // Set the current test instance
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        test.get().log(Status.PASS, "Test Passed");
+        if (test.get() != null) {
+            test.get().log(Status.PASS, "Test Passed");
+        } else {
+            System.err.println("ExtentTest is null in onTestSuccess");
+        }
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        test.get().log(Status.FAIL, "Test Failed");
-        test.get().fail(result.getThrowable());
+        if (test.get() != null) {
+            test.get().log(Status.FAIL, "Test Failed");
+            test.get().fail(result.getThrowable());
+        } else {
+            System.err.println("ExtentTest is null in onTestFailure");
+        }
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        test.get().log(Status.SKIP, "Test Skipped");
+        if (test.get() != null) {
+            test.get().log(Status.SKIP, "Test Skipped");
+        } else {
+            System.err.println("ExtentTest is null in onTestSkipped");
+        }
     }
 
     @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
+    public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+        System.out.println("it is executing");
     }
 
     @Override
     public void onFinish(ITestContext context) {
         extentReports.flush(); // Write the results to the report
-
     }
-
 }

@@ -3,6 +3,7 @@ package com.common.utilities;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ExtentManager {
@@ -20,4 +21,5 @@ public class ExtentManager {
         }
         return extentReports;
     }
+
 }

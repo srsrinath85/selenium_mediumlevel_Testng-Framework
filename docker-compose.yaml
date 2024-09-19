@@ -1,0 +1,65 @@
+version: '3'
+services:
+  hub:
+    image: selenium/hub
+    networks:
+      - custom_network
+    ports:
+      - "4444:4444"
+    environment:
+      GRID_MAX_SESSION: 16
+      GRID_BROWSER_TIMEOUT: 3000
+      GRID_TIMEOUT: 3000
+
+  chrome:
+    image: selenium/node-chrome:latest
+    depends_on:
+      - hub
+    networks:
+      - custom_network
+    ports:
+      - "4446:5900"
+    environment:
+      HUB_HOST: hub
+      HUB_PORT: 4444
+      SE_EVENT_BUS_HOST: hub
+      SE_EVENT_BUS_PUBLISH_PORT: 4442
+      SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+    volumes:
+      - /dev/shm:/dev/shm
+  firefox:
+    image: selenium/node-firefox:latest
+    depends_on:
+      - hub
+    networks:
+      - custom_network
+    ports:
+      - "4448:5900"
+    environment:
+      HUB_HOST: hub
+      HUB_PORT: 4444
+      SE_EVENT_BUS_HOST: hub
+      SE_EVENT_BUS_PUBLISH_PORT: 4442
+      SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+    volumes:
+      - /dev/shm:/dev/shm
+  edge:
+    image: selenium/node-edge:latest
+    depends_on:
+      - hub
+    networks:
+      - custom_network
+    ports:
+      - "4450:5900"
+    environment:
+      HUB_HOST: hub
+      HUB_PORT: 4444
+      SE_EVENT_BUS_HOST: hub
+      SE_EVENT_BUS_PUBLISH_PORT: 4442
+      SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+    volumes:
+      - /dev/shm:/dev/shm
+
+networks:
+  custom_network:
+    driver: bridge

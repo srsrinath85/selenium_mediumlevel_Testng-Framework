@@ -1,0 +1,2 @@
+cd D:\veera project\Intellij_Workspace\Complete frameworks\medium frameworks\Web_automation_medium_Framework_testNG
+docker-compose down
