@@ -10,6 +10,7 @@ services:
       GRID_MAX_SESSION: 16
       GRID_BROWSER_TIMEOUT: 3000
       GRID_TIMEOUT: 3000
+      SE_OPENTELEMETRY_ENABLED: false
 
   chrome:
     image: selenium/node-chrome:latest
@@ -25,6 +26,7 @@ services:
       SE_EVENT_BUS_HOST: hub
       SE_EVENT_BUS_PUBLISH_PORT: 4442
       SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+      SE_OPENTELEMETRY_ENABLED: false
     volumes:
       - /dev/shm:/dev/shm
   firefox:
@@ -41,6 +43,7 @@ services:
       SE_EVENT_BUS_HOST: hub
       SE_EVENT_BUS_PUBLISH_PORT: 4442
       SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+      SE_OPENTELEMETRY_ENABLED: false
     volumes:
       - /dev/shm:/dev/shm
   edge:
@@ -57,6 +60,7 @@ services:
       SE_EVENT_BUS_HOST: hub
       SE_EVENT_BUS_PUBLISH_PORT: 4442
       SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+      SE_OPENTELEMETRY_ENABLED: false
     volumes:
       - /dev/shm:/dev/shm
 
