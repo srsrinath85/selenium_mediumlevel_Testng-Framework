@@ -41,6 +41,9 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${version.maven-surefire-plugin}</version>
                     <configuration>
+                        <forkCount>0</forkCount>
+                        <argLine>-Xmx2048m</argLine> <!-- Set JVM heap size if needed -->
+                        <reuseForks>false</reuseForks>
                         <properties>
                             <property>
                                 <name>dataproviderthreadcount</name>
