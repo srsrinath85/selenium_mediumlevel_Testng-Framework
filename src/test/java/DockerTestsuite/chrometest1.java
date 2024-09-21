@@ -24,8 +24,8 @@ public class chrometest1 {
     public void test2() throws MalformedURLException {
         FirefoxOptions options = new FirefoxOptions();
         options.setCapability("browserName", "chrome");
-        URL url=new URL("http://localhost:4444/wd/hub");
-        RemoteWebDriver driver=new RemoteWebDriver(url, options);
+        URL url = new URL("http://localhost:4444/wd/hub");
+        RemoteWebDriver driver = new RemoteWebDriver(url, options);
         System.out.println("chrome is executing");
 
     }

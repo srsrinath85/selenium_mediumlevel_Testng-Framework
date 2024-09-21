@@ -9,6 +9,7 @@ import org.testng.annotations.*;
 
 import java.awt.*;
 import java.io.IOException;
+
 @Listeners(ExtentListener.class)
 public class Completeflow {
     private TestContext context;
@@ -17,7 +18,7 @@ public class Completeflow {
     @BeforeMethod
 //    @Parameters({"browser"}) // Accept the browser parameter from testng.xml
     public void setUp() throws IOException, AWTException, IOException {
-        context = new TestContext();  // Pass browser parameter to TestContext
+        context = new TestContext(); // Pass browser parameter to TestContext
         VideoManger.startVideoRecording();
         orderPage = context.orderPage;
     }
@@ -48,7 +49,7 @@ public class Completeflow {
 
         } catch (Exception e) {
             test.fail("Test failed with exception: " + e.getMessage());
-            //System.out.println("Not executing.");
+            // System.out.println("Not executing.");
         }
     }
 

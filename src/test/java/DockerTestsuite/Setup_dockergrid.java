@@ -8,14 +8,11 @@ import java.io.IOException;
 
 public class Setup_dockergrid {
 
-
     @BeforeTest
     public void startdockergrid() throws IOException, InterruptedException {
         Runtime.getRuntime().exec("cmd /c start Start_dockergrid.bat");
         Thread.sleep(150000);
     }
-
-
 
     @AfterTest
     public void stopdockergrid() throws IOException, InterruptedException {
@@ -25,8 +22,5 @@ public class Setup_dockergrid {
         Runtime.getRuntime().exec("taskkill /f /im cmd.exe");
 
     }
-
-
-
 
 }

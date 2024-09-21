@@ -1,5 +1,16 @@
 version: '3'
 services:
+  # OpenTelemetry Collector
+  otel-collector:
+    image: otel/opentelemetry-collector:latest
+    networks:
+      - custom_network
+    ports:
+      - "4317:4317"  # OpenTelemetry gRPC port
+    volumes:
+      - ./otel-collector-config.yml:/etc/otel/config.yml
+    command: ["--config", "/etc/otel/config.yml"]
+
   hub:
     image: selenium/hub
     networks:
@@ -10,12 +21,14 @@ services:
       GRID_MAX_SESSION: 16
       GRID_BROWSER_TIMEOUT: 3000
       GRID_TIMEOUT: 3000
-      SE_OPENTELEMETRY_ENABLED: false
+      SE_OPENTELEMETRY_ENABLED: true
+      SE_OPENTELEMETRY_ENDPOINT: http://otel-collector:4317
 
   chrome:
     image: selenium/node-chrome:latest
     depends_on:
       - hub
+      - otel-collector
     networks:
       - custom_network
     ports:
@@ -26,13 +39,16 @@ services:
       SE_EVENT_BUS_HOST: hub
       SE_EVENT_BUS_PUBLISH_PORT: 4442
       SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
-      SE_OPENTELEMETRY_ENABLED: false
+      SE_OPENTELEMETRY_ENABLED: true
+      SE_OPENTELEMETRY_ENDPOINT: http://otel-collector:4317
     volumes:
       - /dev/shm:/dev/shm
+
   firefox:
     image: selenium/node-firefox:latest
     depends_on:
       - hub
+      - otel-collector
     networks:
       - custom_network
     ports:
@@ -43,24 +59,8 @@ services:
       SE_EVENT_BUS_HOST: hub
       SE_EVENT_BUS_PUBLISH_PORT: 4442
       SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
-      SE_OPENTELEMETRY_ENABLED: false
-    volumes:
-      - /dev/shm:/dev/shm
-  edge:
-    image: selenium/node-edge:latest
-    depends_on:
-      - hub
-    networks:
-      - custom_network
-    ports:
-      - "4450:5900"
-    environment:
-      HUB_HOST: hub
-      HUB_PORT: 4444
-      SE_EVENT_BUS_HOST: hub
-      SE_EVENT_BUS_PUBLISH_PORT: 4442
-      SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
-      SE_OPENTELEMETRY_ENABLED: false
+      SE_OPENTELEMETRY_ENABLED: true
+      SE_OPENTELEMETRY_ENDPOINT: http://otel-collector:4317
     volumes:
       - /dev/shm:/dev/shm
 

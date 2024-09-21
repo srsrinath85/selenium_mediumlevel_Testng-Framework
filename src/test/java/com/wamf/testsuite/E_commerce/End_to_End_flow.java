@@ -21,7 +21,7 @@ public class End_to_End_flow {
 
     @BeforeMethod
     public void bt() throws IOException, AWTException {
-        //context = new TestContext();
+        // context = new TestContext();
         VideoManger.startVideoRecording();
         orderPage = context.orderPage;
     }
@@ -76,8 +76,6 @@ public class End_to_End_flow {
         } catch (Exception e) {
             System.out.println("Exception occurred during teardown: " + e.getMessage());
         }
-
-
 
     }
 

@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class TestContext {
     public WebDriver driver;
-    //public PropertyFileLoader pfloader;
+    // public PropertyFileLoader pfloader;
     public ConfigLoader cloader;
     // public dbexecutor dbexecutor;
     public DriverFactory driverFactory;
@@ -42,8 +42,8 @@ public class TestContext {
 //        driver = DriverFactory.initialization(cloader.getProperty("browser"));
 //        driverFactory.openUrl(driver, cloader.getProperty("url1"));
 //        orderPage = new place_orderpage(driver);
-        String gridUrl = cloader.getProperty("grid_url");  // Fetch the Grid URL from config
-        String browserType = cloader.getProperty("browser");  // Fetch browser type from config
+        String gridUrl = cloader.getProperty("grid_url"); // Fetch the Grid URL from config
+        String browserType = cloader.getProperty("browser"); // Fetch browser type from config
         driver = DriverFactory.initialization1(gridUrl, browserType);
 
         // Open the test URL
@@ -52,6 +52,5 @@ public class TestContext {
         // Initialize page objects
         orderPage = new place_orderpage(driver);
     }
-
 
 }
